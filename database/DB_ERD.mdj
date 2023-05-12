@@ -8379,7 +8379,7 @@
 									"visible": false,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 634,
 									"height": 12,
 									"alpha": 1.5707963267948966,
@@ -8401,7 +8401,7 @@
 									"visible": null,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 619,
 									"height": 12,
 									"alpha": 1.5707963267948966,
@@ -8423,7 +8423,7 @@
 									"visible": false,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 664,
 									"height": 12,
 									"alpha": -1.5707963267948966,
@@ -15018,20 +15018,35 @@
 											"top": 728,
 											"width": 231.1484375,
 											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGID28MRCUjXX8=",
+											"_parent": {
+												"$ref": "AAAAAAGHV00jnAALo+g="
+											},
+											"model": {
+												"$ref": "AAAAAAGID28MNSUgiHk="
+											},
+											"font": "Arial;13;0",
+											"left": 37,
+											"top": 743,
+											"width": 231.1484375,
+											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 32,
 									"top": 663,
 									"width": 241.1484375,
-									"height": 83
+									"height": 98
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 32,
 							"top": 640,
 							"width": 241.1484375,
-							"height": 106,
+							"height": 121,
 							"nameLabel": {
 								"$ref": "AAAAAAGHV00jnAAKMr8="
 							},
@@ -16480,6 +16495,16 @@
 							"name": "E_SALARY",
 							"type": "INTEGER",
 							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGID28MNSUgiHk=",
+							"_parent": {
+								"$ref": "AAAAAAGHV00jnAAHRrE="
+							},
+							"name": "E_PASS",
+							"type": "VARCHAR",
+							"length": "50"
 						}
 					]
 				},
