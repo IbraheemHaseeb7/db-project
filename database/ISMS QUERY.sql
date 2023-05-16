@@ -228,3 +228,8 @@ group by p.P_ID, p.PUR_ID having p.P_ID = 'P000000024'
 update PRO_PUR
 set P_ID = 'P000000001'
 where PRO_PUR.P_ID = 'P000000014' and PRO_PUR.PUR_ID = 'PUR0000001'
+
+select * from EMPLOYEE
+
+update EMPLOYEE
+set E_USERNAME = 'tom.wilson', E_PASS='TOM123' where E_ID='E000000005'
