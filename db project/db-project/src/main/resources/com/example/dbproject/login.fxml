@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #212A3E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #212A3E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.loginController">
    <top>
       <VBox alignment="CENTER" prefHeight="97.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
                   <VBox prefHeight="68.0" prefWidth="315.0">
                      <children>
                         <Text fill="#f1f6f9" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                        <TextField prefHeight="25.0" prefWidth="192.0" promptText="Enter your username" style="-fx-background-color: #eaeaea00; -fx-border-color: #eaeaea; -fx-border-radius: 5;">
+                        <TextField fx:id="username" prefHeight="25.0" prefWidth="192.0" promptText="Enter your username" style="-fx-background-color: #eaeaea00; -fx-border-color: #eaeaea; -fx-border-radius: 5; -fx-text-fill: #fff;">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -45,7 +45,7 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField prefHeight="25.0" prefWidth="192.0" promptText="Enter your password" style="-fx-background-color: #eaeaea00; -fx-border-color: #eaeaea; -fx-border-radius: 5;">
+                        <TextField fx:id="password" prefHeight="25.0" prefWidth="192.0" promptText="Enter your password" style="-fx-background-color: #eaeaea00; -fx-border-color: #eaeaea; -fx-border-radius: 5; -fx-text-fill: #fff;">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -54,12 +54,16 @@
                   </VBox>
                   <VBox prefHeight="65.0" prefWidth="315.0">
                      <children>
-                        <Hyperlink text="forgot password?">
+                        <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Hyperlink text="forgot password?" />
+                              <Text fx:id="notification" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="RIGHT" wrappingWidth="268.13671875" />
+                           </children>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </Hyperlink>
-                        <Button mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="370.0" style="-fx-border-radius: 5; -fx-background-color: #394867;" text="login" textFill="WHITE">
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="370.0" style="-fx-cursor: hand; -fx-border-radius: 5; -fx-background-color: #394867;" text="login" textFill="WHITE">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
