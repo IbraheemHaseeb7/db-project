@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1250.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="1250.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.homeController">
    <top>
       <HBox prefHeight="41.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="97.0" style="-fx-background-color: #ffffff00;" text="🏠 In Stock">
+            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="97.0" style="-fx-background-color: #ffffff00;" text="📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊📊🏠 In Stock">
                <effect>
                   <Glow />
                </effect>
@@ -51,7 +51,7 @@
       </HBox>
    </top>
    <center>
-      <AnchorPane prefHeight="739.0" prefWidth="1381.0" style="-fx-background-color: #212A3E;" BorderPane.alignment="CENTER">
+         <AnchorPane prefHeight="739.0" prefWidth="1381.0" style="-fx-background-color: #212A3E;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="84.0" prefWidth="1088.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
@@ -66,7 +66,7 @@
                   <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" prefHeight="34.0" prefWidth="250.0">
                      <children>
                         <TextField prefHeight="34.0" prefWidth="174.0" promptText="Quick Search" style="-fx-background-color: #ffffff00; -fx-border-radius: 5; -fx-border-color: rgb(219, 220, 220); -fx-border-color: #feffff; -fx-text-fill: #fff;" HBox.hgrow="ALWAYS" />
-                        <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="50.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="🔍" textFill="WHITE" />
+                           <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="50.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="📊📊📊📊📊🏠📊📊📊📊📊📊🏠📊📊📊📊📊📊📊🏠📊📊🏠📊📊📊📊📊🏠📊📊🏠🔍" textFill="WHITE" />
                      </children>
                   </HBox>
                   <Label minWidth="-Infinity" prefWidth="34.0" text="Status" textFill="WHITE" HBox.hgrow="NEVER">
@@ -76,7 +76,7 @@
                   </Label>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #212A3E;" HBox.hgrow="NEVER">
                      <children>
-                        <ComboBox editable="true" prefHeight="32.0" prefWidth="1253.0" promptText="Status" style="-fx-background-color: #212A3E;" HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="statusComboBox" editable="true" prefHeight="32.0" prefWidth="1253.0" style="-fx-background-color: #212A3E; -fx-control-inner-background: #212A3E; -fx-text-fill: #fff; -fx-border-color: #fff; -fx-border-radius: 5; -fx-prompt-text-fill: #fff;" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <DatePicker prefHeight="34.0" prefWidth="250.0" promptText="From Date" style="-fx-background-color: #ffffff00;" HBox.hgrow="NEVER">
@@ -217,27 +217,27 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="34.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="34" AnchorPane.leftAnchor="34.0">
+            <Text fill="WHITE" layoutX="34.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="34" AnchorPane.leftAnchor="34.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="34.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="12" AnchorPane.leftAnchor="34.0">
+            <Text fill="WHITE" layoutX="34.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="12" AnchorPane.leftAnchor="34.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="34.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Orders" AnchorPane.leftAnchor="34.0">
+            <Text fill="WHITE" layoutX="34.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Orders" AnchorPane.leftAnchor="34.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="34.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="20" AnchorPane.leftAnchor="34.0">
+            <Text fill="WHITE" layoutX="34.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="20" AnchorPane.leftAnchor="34.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="34.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivered Orders" AnchorPane.leftAnchor="34.0">
+            <Text fill="WHITE" layoutX="34.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivered Orders" AnchorPane.leftAnchor="34.0">
                <font>
                   <Font size="18.0" />
                </font>

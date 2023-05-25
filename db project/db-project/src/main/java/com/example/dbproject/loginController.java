@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 
 public class loginController {
@@ -26,7 +27,7 @@ public class loginController {
                 res.next();
                 notification.setText("Welcome Back, " + res.getString("E_NAME"));
 
-                HelloApplication.mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("home.fxml")).load()));
+                HelloApplication.mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("home.fxml")).load(), 1000, 800));
             }
 
             username.setText("");
@@ -34,5 +35,10 @@ public class loginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void handleForgotPassword() throws IOException {
+        HelloApplication.mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("securityQuestion.fxml")).load(), 600, 400));
     }
 }

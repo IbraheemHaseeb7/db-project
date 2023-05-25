@@ -56,7 +56,7 @@
                      <children>
                         <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Hyperlink text="forgot password?" />
+                              <Hyperlink onAction="#handleForgotPassword" text="forgot password?" />
                               <Text fx:id="notification" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="RIGHT" wrappingWidth="268.13671875" />
                            </children>
                            <VBox.margin>

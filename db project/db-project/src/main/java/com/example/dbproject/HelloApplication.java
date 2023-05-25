@@ -1,10 +1,14 @@
 package com.example.dbproject;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,17 +22,36 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         // ASSIGNING TO A PUBLIC VARIABLE SO IT CAN BE HANDLED ANYWHERE
-        mainStage = stage;
+        Stage splashStage;
 
         // LOADING FXML FILE
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
-        mainScene = new Scene(fxmlLoader.load(), 600, 400);
+        FXMLLoader splashScreen = new FXMLLoader(HelloApplication.class.getResource("splashScreen.fxml"));
+        FXMLLoader loginPage = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        mainScene = new Scene(splashScreen.load(), 600, 350);
+
+        splashStage = stage;
+        splashStage.setScene(mainScene);
+        splashStage.initStyle(StageStyle.UNDECORATED);
+        splashStage.setResizable(false);
+        splashStage.show();
 
         // STAGE PROPERTIES
+        mainStage = new Stage();
         mainStage.setTitle("Login!");
-        mainStage.setResizable(true);
-        mainStage.setScene(mainScene);
-        mainStage.show();
+
+        Duration displayDuration = Duration.seconds(3);
+        Timeline timeline = new Timeline(new KeyFrame(displayDuration, e -> {
+            stage.close();
+
+            try {
+                mainStage.setScene(new Scene(loginPage.load(), 700, 400));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            mainStage.show();
+        }));
+
+        timeline.play();
     }
 
     // making connection static and public to reduce unnecessary connections everywhere

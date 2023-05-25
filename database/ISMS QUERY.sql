@@ -72,6 +72,19 @@ E_PASS VARCHAR(50),
 E_USERNAME VARCHAR(30)
 )
 
+alter table EMPLOYEE
+add E_QUESTION varchar(30)
+
+update EMPLOYEE
+set E_QUESTION='cats'
+where E_NAME='John Smith'
+
+update EMPLOYEE
+set E_QUESTION='dogs'
+where E_NAME='Jane Doe'
+
+select * from EMPLOYEE
+
 -- INSERTING DATA INTO TABLES
 INSERT INTO SUPPLIER (S_ID, S_NAME, S_PHONE)
 VALUES ('S000000001', 'Acme Inc.', 923001234567),
