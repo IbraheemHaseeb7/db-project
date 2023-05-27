@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="64.0" prefWidth="1160.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #eaeaea; -fx-background-color: #212A3E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.orderRowController">
+   <children>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Text fx:id="oid" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="O000000001" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Text fx:id="cname" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ibraheem" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Text fx:id="total" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="100000" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text fx:id="status" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Text fx:id="discount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Button fx:id="moreDetails" mnemonicParsing="false" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="More Details" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </FlowPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>

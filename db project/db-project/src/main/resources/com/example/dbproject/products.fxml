@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="739.0" prefWidth="1381.0" style="-fx-background-color: #212A3E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.ordersController">
+<AnchorPane prefHeight="739.0" prefWidth="1381.0" style="-fx-background-color: #212A3E;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.productsController">
    <children>
       <HBox alignment="CENTER" prefHeight="84.0" prefWidth="1088.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -72,39 +71,70 @@
          <children>
             <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID">
+                  <Text fill="WHITE" onMousePressed="#sortByProductId" strokeType="OUTSIDE" strokeWidth="0.0" text="Product ID">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Text>
                </children>
             </FlowPane>
             <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name">
+                  <Text fill="WHITE" onMousePressed="#sortByProductName" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Text>
                </children>
             </FlowPane>
             <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price">
+                  <Text fill="WHITE" onMousePressed="#sortByUnitPurchaseCost" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Purchase Cost">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Text>
                </children>
             </FlowPane>
             <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Status" />
+                  <Text fill="WHITE" onMousePressed="#sortByUnitSellingCost" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Unit Selling Cost">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Text>
                </children>
             </FlowPane>
             <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Discount" />
+                  <Text fill="WHITE" onMousePressed="#sortByAvailableAmount" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Available Amount">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Text>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" onMousePressed="#sortByWeightQuantity" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Weight/Quantity">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Text>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" onMousePressed="#sortByProductType" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Product Type">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Text>
                </children>
             </FlowPane>
             <FlowPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />

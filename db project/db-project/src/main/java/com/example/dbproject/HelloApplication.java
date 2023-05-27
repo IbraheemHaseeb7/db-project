@@ -52,6 +52,10 @@ public class HelloApplication extends Application {
         }));
 
         timeline.play();
+
+//        mainStage = stage;
+//        mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("placeOrder.fxml")).load()));
+//        mainStage.show();
     }
 
     // making connection static and public to reduce unnecessary connections everywhere

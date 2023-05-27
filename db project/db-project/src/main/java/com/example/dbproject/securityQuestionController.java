@@ -21,15 +21,16 @@ public class securityQuestionController{
     protected void handleSubmit() {
 
         try {
-            String query = "SELECT E_NAME FROM EMPLOYEE e WHERE e.E_USERNAME='" + username.getText() + "' and e.E_QUESTION='" + question.getText() + "'";
+            String query = "SELECT E_NAME, E_USERNAME FROM EMPLOYEE e WHERE e.E_USERNAME='" + username.getText() + "' and e.E_QUESTION='" + question.getText() + "'";
             ResultSet res = HelloApplication.statement.executeQuery(query);
 
             FXMLLoader changePassword = new FXMLLoader(HelloApplication.class.getResource("changePassword.fxml"));
 
             if (res.next()) {
                 Parent parent = changePassword.load();
-                changePassword cp = new changePassword();
+                changePasswordController cp = new changePasswordController();
                 cp = changePassword.getController();
+                cp.setUsername(res.getString("E_USERNAME"));
                 cp.enterYourNewPassword.setText("Enter your new password, " + res.getString("E_NAME"));
                 HelloApplication.mainStage.setScene(new Scene(parent, 600, 400));
             } else {
