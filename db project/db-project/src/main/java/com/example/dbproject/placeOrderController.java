@@ -11,16 +11,21 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class placeOrderController {
     @FXML
     ComboBox searchComboBox;
     @FXML
     VBox productsVbox, productsVbox1;
-
+    @FXML
+    public Text amountPaid, discount, totalBill, totalBillAfterDiscount, returnAmount;
+    @FXML
+    TextField discountInput, customerPhoneNoInput, customerNameInput, amountPaidInput;
     @FXML
     public void initialize() {
         ObservableList<String> items = FXCollections.observableArrayList();
@@ -58,6 +63,8 @@ public class placeOrderController {
 
     }
 
+    public static ArrayList<Product> products = new ArrayList<>();
+
     @FXML
     public void handleSelection(ActionEvent e) {
         String typed = searchComboBox.getValue().toString();
@@ -69,7 +76,22 @@ public class placeOrderController {
         String typed = searchComboBox.getValue().toString();
         addInVbox(typed);
     }
+    @FXML
+    public void handleCustomerName() {
 
+    }
+    @FXML
+    public void handleAmountPaid() {
+        amountPaid.setText(amountPaidInput.getText());
+    }
+    @FXML
+    public void handleCustomerPhoneNo() {
+
+    }
+    @FXML
+    public void handleDiscount() {
+
+    }
     public void addInVbox(String typed) {
         try {
             String q = "select * from PRODUCT p where p.P_NAME='" + typed + "'";
@@ -89,6 +111,18 @@ public class placeOrderController {
                 bqrc.quantity.setText("1");
                 bqrc.price.setText(res.getString("P_PRICE"));
                 bqrc.totalPrice.setText(res.getString("P_PRICE"));
+                bqrc.givenQuantity.setText(res.getString("P_WEIGHT"));
+                bqrc.totalBill = totalBill;
+
+                products.add(new Product());
+                bqrc.p = products.get(products.size() - 1);
+
+                bqrc.p.name = res.getString("P_NAME");
+                bqrc.p.id = res.getString("P_ID");
+                bqrc.p.price = Integer.parseInt(res.getString("P_PRICE"));
+                bqrc.p.quantity = 1;
+
+                totalBill.setText(sumBill() + "");
 
                 productsVbox.getChildren().add(comp);
             } else {
@@ -107,11 +141,22 @@ public class placeOrderController {
                 bwrc.totalPrice.setText("0");
                 bwrc.weight.setText(res.getString("P_WEIGHT"));
 
+                products.add(new Product());
+                bwrc.p = products.get(products.size() - 1);
+
                 productsVbox1.getChildren().add(comp);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static double sumBill() {
+        double sum = 0;
+        for (Product p : products) {
+            sum += p.price;
+        }
+        return sum;
     }
 }

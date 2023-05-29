@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.util.function.Function;
+
 public class byWRowController {
     @FXML
     Text byQName1, productId, price, totalPrice, amount, weight;
@@ -16,6 +18,7 @@ public class byWRowController {
 
     VBox productsVbox;
     Parent comp;
+    Product p;
     @FXML
     public void handleDelete() {
         productsVbox.getChildren().remove(comp);

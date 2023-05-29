@@ -21,41 +21,41 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        // ASSIGNING TO A PUBLIC VARIABLE SO IT CAN BE HANDLED ANYWHERE
-        Stage splashStage;
+//        // ASSIGNING TO A PUBLIC VARIABLE SO IT CAN BE HANDLED ANYWHERE
+//        Stage splashStage;
+//
+//        // LOADING FXML FILE
+//        FXMLLoader splashScreen = new FXMLLoader(HelloApplication.class.getResource("splashScreen.fxml"));
+//        FXMLLoader loginPage = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+//        mainScene = new Scene(splashScreen.load(), 600, 350);
+//
+//        splashStage = stage;
+//        splashStage.setScene(mainScene);
+//        splashStage.initStyle(StageStyle.UNDECORATED);
+//        splashStage.setResizable(false);
+//        splashStage.show();
+//
+//        // STAGE PROPERTIES
+//        mainStage = new Stage();
+//        mainStage.setTitle("Login!");
+//
+//        Duration displayDuration = Duration.seconds(3);
+//        Timeline timeline = new Timeline(new KeyFrame(displayDuration, e -> {
+//            stage.close();
+//
+//            try {
+//                mainStage.setScene(new Scene(loginPage.load(), 700, 400));
+//            } catch (IOException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//            mainStage.show();
+//        }));
+//
+//        timeline.play();
 
-        // LOADING FXML FILE
-        FXMLLoader splashScreen = new FXMLLoader(HelloApplication.class.getResource("splashScreen.fxml"));
-        FXMLLoader loginPage = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-        mainScene = new Scene(splashScreen.load(), 600, 350);
-
-        splashStage = stage;
-        splashStage.setScene(mainScene);
-        splashStage.initStyle(StageStyle.UNDECORATED);
-        splashStage.setResizable(false);
-        splashStage.show();
-
-        // STAGE PROPERTIES
-        mainStage = new Stage();
-        mainStage.setTitle("Login!");
-
-        Duration displayDuration = Duration.seconds(3);
-        Timeline timeline = new Timeline(new KeyFrame(displayDuration, e -> {
-            stage.close();
-
-            try {
-                mainStage.setScene(new Scene(loginPage.load(), 700, 400));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            mainStage.show();
-        }));
-
-        timeline.play();
-
-//        mainStage = stage;
-//        mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("placeOrder.fxml")).load()));
-//        mainStage.show();
+        mainStage = stage;
+        mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("placeOrder.fxml")).load()));
+        mainStage.show();
     }
 
     // making connection static and public to reduce unnecessary connections everywhere

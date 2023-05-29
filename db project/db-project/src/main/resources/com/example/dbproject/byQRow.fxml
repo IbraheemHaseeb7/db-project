@@ -11,7 +11,7 @@
    <children>
       <FlowPane alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="39.0" HBox.hgrow="ALWAYS">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+            <Text fx:id="givenQuantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="90" HBox.hgrow="NEVER">
