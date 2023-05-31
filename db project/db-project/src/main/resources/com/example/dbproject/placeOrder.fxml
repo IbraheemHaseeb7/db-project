@@ -60,7 +60,12 @@
             <FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label prefHeight="27.0" prefWidth="93.0" text="Discount" textFill="WHITE" />
-                  <TextField fx:id="discountInput" onKeyTyped="#handleDiscount" prefHeight="27.0" prefWidth="249.0" promptText="In Percentages" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
+                  <FlowPane prefHeight="27.0" prefWidth="253.0">
+                     <children>
+                        <TextField fx:id="discountInPercentages" onKeyTyped="#handleInPercentages" prefHeight="27.0" prefWidth="125.0" promptText="In Percentages" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
+                        <TextField fx:id="discountInRuppees" onKeyTyped="#handleInRuppees" prefWidth="125.0" promptText="In Ruppess" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
+                     </children>
+                  </FlowPane>
                </children>
             </FlowPane>
          </children>

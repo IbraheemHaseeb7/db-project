@@ -15,30 +15,46 @@ public class byWRowController {
     double unitAmount;
     @FXML
     TextField priceInput, weightInput;
-
+    Text totalBill, totalBillAfterDiscount, discount, returnAmount, amountPaid;
     VBox productsVbox;
     Parent comp;
     Product p;
     @FXML
     public void handleDelete() {
         productsVbox.getChildren().remove(comp);
+        placeOrderController.products.remove(p);
+        totalBill.setText(placeOrderController.sumBill() + "");
+        totalBillAfterDiscount.setText(placeOrderController.sumBill() - Double.parseDouble(discount.getText()) + "");
+        returnAmount.setText((Double.parseDouble(amountPaid.getText()) - Double.parseDouble(totalBillAfterDiscount.getText())) + "");
     }
     @FXML
     public void handlePrice() {
         String typed = priceInput.getText();
-        am = Integer.parseInt(typed);
-        am = (am / Integer.parseInt(price.getText())) * unitAmount;
-        amount.setText(am + "");
+        am = Double.parseDouble(typed);
+        am = (am / Double.parseDouble(price.getText())) * unitAmount;
+        amount.setText(String.format("%.2f", am));
         totalPrice.setText(typed);
         weightInput.setText("");
+
+        p.price = Double.parseDouble(typed);
+        p.quantity = am;
+        totalBill.setText(placeOrderController.sumBill() + "");
+        totalBillAfterDiscount.setText(placeOrderController.sumBill() - Double.parseDouble(discount.getText()) + "");
+        returnAmount.setText((Double.parseDouble(amountPaid.getText()) - Double.parseDouble(totalBillAfterDiscount.getText())) + "");
     }
     @FXML
     public void handleWeight() {
         String typed = weightInput.getText();
-        am = Integer.parseInt(typed);
-        am = am / unitAmount * Integer.parseInt(price.getText());
+        am = Double.parseDouble(typed);
+        am = am / unitAmount * Double.parseDouble(price.getText());
         amount.setText(typed);
-        totalPrice.setText(am + "");
+        totalPrice.setText(String.format("%.2f", am));
         priceInput.setText("");
+
+        p.price = am;
+        p.quantity = Double.parseDouble(typed);
+        totalBill.setText(placeOrderController.sumBill() + "");
+        totalBillAfterDiscount.setText(placeOrderController.sumBill() - Double.parseDouble(discount.getText()) + "");
+        returnAmount.setText((Double.parseDouble(amountPaid.getText()) - Double.parseDouble(totalBillAfterDiscount.getText())) + "");
     }
 }

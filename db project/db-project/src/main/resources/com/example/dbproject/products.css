@@ -1,0 +1,15 @@
+.combo-box .text {
+    -fx-fill: #fff;
+}
+
+.button:hover {
+    -fx-background-color:  #fff;
+}
+
+.inputs {
+    -fx-background-color: #ffffff00;
+    -fx-border-color: #fff;
+    -fx-border-radius: 5;
+    -fx-text-fill: #fff;
+    -fx-pref-width: 20em;
+}

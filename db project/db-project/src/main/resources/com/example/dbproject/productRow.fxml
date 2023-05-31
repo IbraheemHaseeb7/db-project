@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -55,9 +56,22 @@
             <Text fx:id="productType" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Product Type" />
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Button fx:id="moreDetails" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMoreDetails" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="more details" textFill="WHITE" />
+            <Button fx:id="moreDetails" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMoreDetails" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="ℹ" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="delete" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDelete" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="🚮" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="edit" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEdit" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="🖊" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></FlowPane>
    </children>
    <padding>
