@@ -11,32 +11,42 @@
    <children>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Text fx:id="oid" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="O000000001" />
+            <Text fx:id="oid" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="orderid" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Text fx:id="cname" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ibraheem" />
+            <Text fx:id="cname" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="name" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Text fx:id="total" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="100000" />
+            <Text fx:id="totalPrice" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="totalPrice" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Text fx:id="status" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed" />
+            <Text fx:id="totalProducts" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="totalProducts" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Text fx:id="discount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="discount" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="discount" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text fx:id="date" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="date" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text fx:id="employee" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="employee" />
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
-            <Button fx:id="moreDetails" mnemonicParsing="false" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="More Details" textFill="WHITE">
+            <Button fx:id="moreDetails" mnemonicParsing="false" onAction="#handleMoreDetails" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="More Details" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

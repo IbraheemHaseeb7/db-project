@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.placeOrderController">
+<ScrollPane minHeight="800.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dbproject.placeOrderController">
    <content>
       <AnchorPane fx:id="apane" prefHeight="896.0" prefWidth="${apane.parent.width}" style="-fx-background-color: #212A3E;">
          <children>
@@ -32,12 +31,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <GridPane layoutX="272.0" layoutY="462.0" prefHeight="133.0" prefWidth="838.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="462.0">
+            <GridPane layoutX="-6.0" layoutY="462.0" prefHeight="133.0" prefWidth="711.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="462.0">
                <children>
                   <FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="93.0" text="Customer Name" textFill="WHITE" />
-                        <TextField fx:id="customerNameInput" onKeyTyped="#handleCustomerName" prefHeight="27.0" prefWidth="249.0" promptText="Name" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
+                        <Label prefHeight="27.0" prefWidth="93.0" text="Customer Email" textFill="WHITE" />
+                        <TextField fx:id="customerEmailInput" onKeyTyped="#handleCustomerEmail" prefHeight="27.0" prefWidth="249.0" promptText="Email" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
                      </children>
                   </FlowPane>
                   <FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -63,8 +62,15 @@
                         </FlowPane>
                      </children>
                   </FlowPane>
+                  <FlowPane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="93.0" text="Customer Name" textFill="WHITE" />
+                        <TextField fx:id="customerNameInput" onKeyTyped="#handleCustomerName" prefHeight="27.0" prefWidth="249.0" promptText="Name" style="-fx-background-color: #ffffff00; -fx-border-color: #fff; -fx-border-radius: 5; -fx-text-fill: #fff;" />
+                     </children>
+                  </FlowPane>
                </children>
                <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -149,7 +155,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="87.0" layoutY="773.0" prefHeight="42.0" prefWidth="1294.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="773.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="Place Order" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#handlePlaceOrder" prefHeight="39.0" prefWidth="224.0" style="-fx-background-color: #394867; -fx-border-radius: 5;" text="Place Order" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -63,6 +63,7 @@ public class HelloApplication extends Application {
     public static Statement statement;
     public static Stage mainStage;
     public static Scene mainScene;
+    public static Employee employee = new Employee();
 
     // connection to database
     {

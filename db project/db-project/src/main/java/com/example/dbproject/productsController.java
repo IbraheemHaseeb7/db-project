@@ -62,7 +62,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_PRICE";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "p.P_PRICE asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -89,7 +92,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_PURCHASE";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "p.P_PURCHASE asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -117,7 +123,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_NAME";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "p.P_NAME asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -145,7 +154,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_ID";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'\n" +
+                    "order by\n" +
+                    "pd.P_ID asc\n";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -173,7 +185,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_QUANTITY";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "pd.P_QUANTITY asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -201,7 +216,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_TYPE";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "pd.P_TYPE asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -229,7 +247,10 @@ public class productsController {
         clearAllProducts();
 
         try {
-            String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' order by p.P_WEIGHT";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'" +
+                    "order by\n" +
+                    "pd.P_WEIGHT asc";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -258,7 +279,8 @@ public class productsController {
         if (statusComboBox.getValue().equals("By Weight")) {
 
             try {
-                String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' and p.P_TYPE='W'";
+                String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                        "inner join [PRODUCT DETAILS] pd on pd.P_ID=p.P_ID and pd.P_TYPE='W' and pd.P_AVAILABILITY='available'\n";
                 ResultSet res = HelloApplication.statement.executeQuery(q);
 
                 while (res.next()) {
@@ -283,7 +305,8 @@ public class productsController {
         }
         else if (statusComboBox.getValue().equals("By Quantity")) {
             try {
-                String q = "select * from PRODUCT p where p.P_AVAILABILITY='available' and p.P_TYPE='Q'";
+                String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                        "inner join [PRODUCT DETAILS] pd on pd.P_ID=p.P_ID and pd.P_TYPE='Q' and pd.P_AVAILABILITY='available'\n";
                 ResultSet res = HelloApplication.statement.executeQuery(q);
 
                 while (res.next()) {
@@ -308,7 +331,8 @@ public class productsController {
         }
         else {
             try {
-                String q = "select * from PRODUCT p where p.P_AVAILABILITY='available'";
+                String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                        "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'";
                 ResultSet res = HelloApplication.statement.executeQuery(q);
 
                 while (res.next()) {
@@ -337,7 +361,8 @@ public class productsController {
     }
     public void loadAllProducts() {
         try {
-            String q = "select * from PRODUCT where P_AVAILABILITY='available'";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'\n";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -369,7 +394,8 @@ public class productsController {
             if (value.equals("")) {
                 value = "999999999";
             }
-            String q = "select * from PRODUCT p where P_AVAILABILITY='available' and p.P_QUANTITY <= " + value;
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available' and pd.P_QUANTITY <=  " + value;
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -399,7 +425,8 @@ public class productsController {
             if (value.equals("")) {
                 value = "999999999";
             }
-            String q = "select * from PRODUCT p where P_AVAILABILITY='available' and p.P_PRICE <= " + value;
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available' and p.P_PRICE <= " + value;
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {
@@ -426,7 +453,8 @@ public class productsController {
         clearAllProducts();
         try {
             String value = search.getText();
-            String q = "select * from PRODUCT p where P_AVAILABILITY='available' and p.P_NAME like '" + value + "%'";
+            String q = "SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p\n" +
+                    "inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available' and p.P_NAME like '" + value + "%'";
             ResultSet res = HelloApplication.statement.executeQuery(q);
 
             while (res.next()) {

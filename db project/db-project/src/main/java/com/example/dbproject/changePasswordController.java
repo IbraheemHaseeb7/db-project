@@ -16,6 +16,7 @@ public class changePasswordController {
     Text notification = new Text();
     @FXML
     Text enterYourNewPassword = new Text();
+    String eid, designation;
     private String username;
     @FXML
     protected void handleChangePassword() {
@@ -23,12 +24,19 @@ public class changePasswordController {
         if (newPassword.getText().equals(repeatPassword.getText())) {
 
             try {
-                String query = "update EMPLOYEE set E_PASS='" + newPassword.getText() + "' where E_USERNAME='" + this.username + "'";
+                String query = "update [EMPLOYEE DETAILS] set E_PASS='" + newPassword.getText() + "' where E_USERNAME='" + this.username + "'";
                 int res = HelloApplication.statement.executeUpdate(query);
 
-
-
                 if (res > 0) {
+                    HelloApplication.employee.id = eid;
+                    HelloApplication.employee.name = username;
+
+                    switch (designation) {
+                        case "manager" -> HelloApplication.employee.employeeLevels = EmployeeLevels.MANAGER;
+                        case "cashier" -> HelloApplication.employee.employeeLevels = EmployeeLevels.CASHIER;
+                        case "worker" -> HelloApplication.employee.employeeLevels = EmployeeLevels.WORKER;
+                    }
+
                     HelloApplication.mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("home.fxml")).load(), 1000, 800));
                 } else {
                     notification.setText("Something went wrong. Try Again :(");

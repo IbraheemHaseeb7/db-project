@@ -6,7 +6,12 @@ import javafx.scene.text.Text;
 
 public class orderRowController {
     @FXML
-    Text oid, cname, total, status, discount;
+    Text oid, cname, totalPrice, totalProducts, discount, date, employee;
     @FXML
     Button moreDetails;
+
+    @FXML
+    public void handleMoreDetails() {
+
+    }
 }

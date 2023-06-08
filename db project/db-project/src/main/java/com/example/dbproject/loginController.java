@@ -18,7 +18,7 @@ public class loginController {
     protected void login() {
 
         try {
-            String query = "select E_NAME, E_USERNAME, E_PASS from EMPLOYEE e where e.E_USERNAME='" +username.getText() + "' and e.E_PASS='" + password.getText() + "'";
+            String query = "select E_DESIGNATION, E_NAME, E_ID, (select E_USERNAME from [EMPLOYEE DETAILS] ed where ed.E_ID=e.E_ID) as E_USERNAME, (select E_PASS from [EMPLOYEE DETAILS] ed where ed.E_ID=e.E_ID) as E_PASS from EMPLOYEE e where e.E_ID=(select E_ID from [EMPLOYEE DETAILS] ed where ed.E_USERNAME = '" +username.getText() + "' and ed.E_PASS='" + password.getText() + "')";
             ResultSet res = HelloApplication.statement.executeQuery(query);
 
             if (!res.isBeforeFirst()) {
@@ -26,6 +26,15 @@ public class loginController {
             } else {
                 res.next();
                 notification.setText("Welcome Back, " + res.getString("E_NAME"));
+
+                HelloApplication.employee.id = res.getString("E_ID");
+                HelloApplication.employee.name = res.getString("E_NAME");
+
+                switch (res.getString("E_DESIGNATION")) {
+                    case "manager" -> HelloApplication.employee.employeeLevels = EmployeeLevels.MANAGER;
+                    case "cashier" -> HelloApplication.employee.employeeLevels = EmployeeLevels.CASHIER;
+                    case "worker" -> HelloApplication.employee.employeeLevels = EmployeeLevels.WORKER;
+                }
 
                 HelloApplication.mainStage.setScene(new Scene(new FXMLLoader(HelloApplication.class.getResource("home.fxml")).load(), 1000, 800));
             }

@@ -97,6 +97,8 @@ NEW_PRESET_VALUE FLOAT,
 ALTER TABLE PRODUCT
 ALTER COLUMN P_NAME VARCHAR(50)
 
+select * from EMPLOYEE
+
 alter table EMPLOYEE
 add E_QUESTION varchar(30)
 
@@ -288,3 +290,567 @@ select * from PRODUCT
 
 update PRODUCT
 set P_AVAILABILITY='available'
+
+create table [EMPLOYEE DETAILS] (
+E_ID varchar(10),
+E_PASS varchar(20),
+E_QUESTION varchar(20),
+E_USERNAME varchar(30),
+CONSTRAINT ED_PK PRIMARY KEY (E_ID),
+CONSTRAINT ED_FK FOREIGN KEY (E_ID) REFERENCES EMPLOYEE(E_ID)
+)
+
+select * from EMPLOYEE
+select * from [EMPLOYEE DETAILS]
+
+INSERT INTO [EMPLOYEE DETAILS] (E_ID, E_PASS, E_QUESTION, E_USERNAME)
+values
+('E000000001', 'a1s2d3f4', 'john.smith', 'cats'),
+('E000000002', 'JANE123', 'jane.doe', 'dogs'),
+('E000000003', 'BOB123', 'bob.johnson', 'sheeps'),
+('E000000004', 'ALICE123', 'alice.wong', 'parrots'),
+('E000000005', 'TOM123', 'tom.wilson', 'lions')
+
+
+create table [PRODUCT DETAILS](
+P_ID VARCHAR (10),
+P_QUANTITY INT CHECK (P_QUANTITY >= 0) ,
+P_WEIGHT FLOAT,
+P_TYPE VARCHAR (1) CHECK (P_TYPE = 'W' OR P_TYPE = 'Q'),
+P_PRESET INT,
+P_AVAILABILITY VARCHAR(20) DEFAULT 'available',
+CONSTRAINT PD_PK PRIMARY KEY(P_ID),
+CONSTRAINT PD_FK FOREIGN KEY (P_ID) REFERENCES PRODUCT(P_ID)
+)
+INSERT INTO [PRODUCT DETAILS](P_ID, P_QUANTITY, P_WEIGHT, P_TYPE, P_AVAILABILITY)
+SELECT P_ID, P_QUANTITY, P_WEIGHT, P_TYPE, P_AVAILABILITY FROM PRODUCT
+
+ALTER TABLE PRODUCT 
+DROP COLUMN P_AVAILABILITY,P_TYPE
+
+CREATE TABLE [PRODUCT HISTORY](
+P_ID VARCHAR(10),
+P_NAME VARCHAR(20),
+P_PURCHASE FLOAT,
+P_PRICE FLOAT,
+P_TIME DATETIME DEFAULT SYSDATETIME(),
+CONSTRAINT PH_PK PRIMARY KEY (P_ID,P_TIME),
+CONSTRAINT PH_FK FOREIGN KEY (P_ID) REFERENCES PRODUCT(P_ID)
+)
+
+INSERT INTO [PRODUCT HISTORY](P_ID,P_NAME,P_PURCHASE,P_PRICE)
+SELECT P_ID,P_NAME,P_PURCHASE,P_PRICE FROM PRODUCT
+
+SELECT * FROM PRODUCT
+
+alter table PRODUCT
+drop column P_QUANTITY, P_WEIGHT, P_TYPE, P_AVAILABILITY
+
+alter table EMPLOYEE
+drop column E_PASS, E_USERNAME, E_QUESTION
+
+--pid ,name,purchase,price,quantity,weight,type
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on pd.P_ID=p.P_ID and pd.P_TYPE='W' and pd.P_AVAILABILITY='available'
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on pd.P_ID=p.P_ID and pd.P_TYPE='Q' and pd.P_AVAILABILITY='available'
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and p.P_NAME like 'c%'
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_QUANTITY < 15
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and p.P_PRICE <200
+
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+p.P_NAME asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+p.P_PRICE asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+pd.P_QUANTITY asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+pd.P_WEIGHT asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+p.P_PURCHASE asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID
+order by
+pd.P_TYPE asc
+
+SELECT p.P_ID,p.P_NAME,p.P_PRICE,p.P_PURCHASE,pd.P_QUANTITY,pd.P_WEIGHT,pd.P_TYPE FROM PRODUCT p
+inner join [PRODUCT DETAILS] pd on p.P_ID = pd.P_ID and pd.P_AVAILABILITY='available'
+order by
+pd.P_ID asc
+
+
+-- login query
+select E_NAME, E_ID, E_DESIGNATION,
+(select E_USERNAME from [EMPLOYEE DETAILS] ed where ed.E_ID=e.E_ID) as E_USERNAME,
+(select E_PASS from [EMPLOYEE DETAILS] ed where ed.E_ID=e.E_ID) as E_PASS
+from EMPLOYEE e where 
+e.E_ID=
+(select E_ID from [EMPLOYEE DETAILS] ed 
+where ed.E_USERNAME = 'john.smith' and ed.E_PASS='a1s2d3f4')
+
+select * from [EMPLOYEE DETAILS]
+
+------------------- fix
+alter table [EMPLOYEE DETAILS]
+add TEMP varchar(30)
+
+update [EMPLOYEE DETAILS]
+set TEMP=E_USERNAME
+
+update [EMPLOYEE DETAILS]
+set E_USERNAME=E_QUESTION
+
+update [EMPLOYEE DETAILS]
+set E_QUESTION=TEMP
+
+alter table [EMPLOYEE DETAILS]
+drop column TEMP
+---------------------
+
+-- security question query
+select E_USERNAME, E_ID, 
+(select E_NAME from EMPLOYEE e where e.E_ID=ed.E_ID) as E_NAME,
+(select E_DESIGNATION from EMPLOYEE e where e.E_ID=ed.E_ID) as E_DESIGNATION
+from [EMPLOYEE DETAILS] ed where
+ed.E_USERNAME='john.smith' and ed.E_QUESTION='cats'
+
+select * from [PURCHASE]
+select * from [PRODUCT DETAILS]
+
+
+begin tran UPDATE_PRODUCT
+
+	update PRODUCT
+	set	P_NAME='Banana', P_PURCHASE=40, P_PRICE=60
+	where P_NAME='Banana'
+
+	update [PRODUCT DETAILS]
+	set P_TYPE='Q', P_WEIGHT=12, P_PRESET=null
+	where P_ID='P000000002'
+
+commit
+
+create function product_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'P'+Cast(count(P_ID)+1 as varchar) from PRODUCT )
+return(@temp)
+end
+
+create function purchase_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'PUR'+Cast(count(PUR_ID)+1 as varchar) from PURCHASE )
+return(@temp)
+end
+
+create function supplier_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'S'+Cast(count(S_ID)+1 as varchar) from SUPPLIER )
+return(@temp)
+end
+
+declare @res varchar(10);
+set @res = dbo.product_id();
+select @res as PID
+
+declare @res varchar(10);
+set @res = dbo.supplier_id();
+select @res as PID
+
+---------------------FIXING THE QUANTITY
+select * from PRO_PUR where P_ID='P000000024'
+select * from [PRODUCT DETAILS] where P_ID='P000000024'
+
+update [PRODUCT DETAILS]
+set P_QUANTITY=200 where P_ID='P000000024'
+
+select * from [PRODUCT] where P_ID='P000000024'
+select * from PURCHASE
+-------------------------------------
+
+------------query for adding product when placing order
+select P_ID, P_NAME,P_PRICE, P_PURCHASE,
+(select P_AVAILABILITY from [PRODUCT DETAILS] pd
+where pd.P_ID=p.P_ID) as P_AVAILABILITY,
+(select P_WEIGHT from [PRODUCT DETAILS] pd
+where pd.P_ID=p.P_ID) as P_WEIGHT,
+(select P_TYPE from [PRODUCT DETAILS] pd
+where pd.P_ID=p.P_ID) as P_TYPE
+from PRODUCT p where p.P_NAME='Banana' and p.P_ID=
+(select P_ID from [PRODUCT DETAILS] pd 
+where pd.P_ID=p.P_ID and pd.P_AVAILABILITY='available')
+
+----------purchase time fix
+alter table PURCHASE
+alter column PUR_TIME datetime
+
+alter table PURCHASE
+add constraint pur_time_default
+default SYSDATETIME() for PUR_TIME
+
+----------stored procedure for adding products
+
+create procedure add_product
+@pname varchar(20),
+@pid varchar(10),
+@purchase float,
+@price float,
+@quantity float,
+@weight float,
+@type varchar(1),
+@preset int,
+@supplier varchar(10)
+as 
+begin
+	insert into PRODUCT(P_ID, P_NAME, P_PRICE, P_PURCHASE, S_ID)
+	values (@pid, @pname, @price, @purchase, @supplier)
+
+	insert into [PRODUCT DETAILS](P_ID, P_QUANTITY, P_WEIGHT, P_TYPE, P_PRESET)
+	values (@pid, @quantity, @weight, @type, @preset)
+
+	insert into [PRODUCT HISTORY](P_ID, P_NAME, P_PURCHASE, P_PRICE)
+	values (@pid, @pname, @purchase, @price)
+end
+
+drop procedure add_product
+
+create procedure add_purchase
+@purid varchar(10),
+@sid varchar(10),
+@method varchar(10),
+@discount int, 
+@eid varchar(10)
+as
+begin
+	declare @temp varchar(10)
+	set @temp = dbo.purchase_id();
+
+	insert into [PURCHASE] (PUR_ID, S_ID, PUR_METHOD, PUR_DISCOUNT, E_ID)
+	values (@purid, @sid, @method, @discount, @eid)
+
+end
+
+create procedure add_pro_pur
+@purid varchar(10),
+@pid varchar(10),
+@quantity float,
+@price float
+as
+begin
+	insert into PRO_PUR(PUR_ID, P_ID, PUR_QUANTITY, PUR_PRICE)
+	values (@purid, @pid, @quantity, @price)
+end
+
+select * from [PRO_PUR]
+
+------------------ fix pro pur price data type
+alter table [PRO_PUR]
+alter column PUR_PRICE float
+
+--------------trigger for 0 quantity
+create trigger out_of_stock
+on [PRODUCT DETAILS]
+after update as
+begin
+	update [PRODUCT DETAILS]
+	set P_AVAILABILITY='out of stock' where P_QUANTITY=0
+end
+
+-----------------------
+declare @temp2 varchar(10)
+set @temp2 = dbo.product_id();
+exec dbo.add_product @pname='testing', @pid=@temp2, @purchase=0, @price=0, @quantity=0, @weight=0, @type='W', @preset=0, @supplier='S000000001'
+
+
+select * from [PRODUCT HISTORY]	
+
+-----------------------adding cascade delete to product details page
+alter table [PRODUCT DETAILS]
+drop constraint PD_FK
+
+alter table [PRODUCT DETAILS]
+add constraint PD_FK FOREIGN KEY (P_ID) REFERENCES PRODUCT(P_ID) ON DELETE CASCADE
+------------------------------------------
+
+--------------------- checks if supplier exists or not and then creates if it does not exist
+create function doesSupplierExists(@name varchar(30))
+returns varchar(10)
+as
+begin
+	declare @supexists varchar(5)
+	set @supexists=(select count(*) as [EXISTS] from SUPPLIER s where s.S_NAME=@name)
+	
+	return @supexists
+end
+
+create procedure add_supplier
+@id varchar(10),
+@name varchar(30),
+@phone bigint
+as
+begin
+	if dbo.doesSupplierExists(@name) = 0 
+	begin
+		insert into SUPPLIER(S_ID, S_NAME, S_PHONE)
+		values (@id, @name, @phone)
+	end
+
+	select S_ID from SUPPLIER s where s.S_NAME=@name
+end
+
+select * from [PURCHASE]
+update PURCHASE
+set PUR_METHOD='cash' where PUR_METHOD='Cash'
+-----------------------------
+
+--------------------query for purchase bill rows
+select PUR_ID, PUR_METHOD, PUR_TIME,
+(select S_NAME from SUPPLIER s where s.S_ID=p.S_ID) as S_NAME,
+(select E_NAME from EMPLOYEE e where e.E_ID=p.E_ID) as E_NAME,
+(select count(P_ID) from [PRO_PUR] pp where pp.PUR_ID=p.PUR_ID) as [Total Products],
+(select sum(PUR_PRICE * PUR_QUANTITY) from [PRO_PUR] pp where pp.PUR_ID=p.PUR_ID) as [Total Amount]
+from PURCHASE p
+
+select PUR_ID, PUR_METHOD, PUR_TIME,
+(select S_NAME from SUPPLIER s where s.S_ID=p.S_ID) as S_NAME,
+(select E_NAME from EMPLOYEE e where e.E_ID=p.E_ID) as E_NAME,
+(select count(P_ID) from [PRO_PUR] pp where pp.PUR_ID=p.PUR_ID) as [Total Products],
+(select sum(PUR_PRICE * PUR_QUANTITY) as [T] from [PRO_PUR] pp where pp.PUR_ID=p.PUR_ID)
+as [Total Amount]
+from PURCHASE p where 
+YEAR(PUR_TIME) >= 2022 and YEAR(PUR_TIME) <= 2023 and
+MONTH(PUR_TIME) >= 2 and MONTH(PUR_TIME) <= 6 and
+DAY(PUR_TIME) >= 1 and DAY(PUR_TIME) <= 20
+
+select PUR_QUANTITY, PUR_PRICE,  
+(select P_NAME from PRODUCT p where p.P_ID=pd.P_ID) as P_NAME
+from [PRO_PUR] pd where PUR_ID='PUR8'
+
+----------------------------------------------
+
+
+-------------------------functions for creating new customer, order, employee keys
+create function order_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'O'+Cast(count(O_ID)+1 as varchar) from [ORDER] )
+return(@temp)
+end
+
+create function customer_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'C'+Cast(count(C_ID)+1 as varchar) from [CUSTOMER] )
+return(@temp)
+end
+
+create function employee_id()
+returns varchar(10)
+as
+begin
+declare @temp varchar(10);
+set @temp = (select 'E'+Cast(count(E_ID)+1 as varchar) from [EMPLOYEE] )
+return(@temp)
+end
+------------------------------------------
+
+-----------------procedures to place order
+
+--------------------- checks if supplier exists or not and then creates if it does not exist
+create function doesCustomerExists(@email varchar(50))
+returns varchar(10)
+as
+begin
+	declare @cusexists varchar(50)
+	set @cusexists=(select count(*) as [EXISTS] from CUSTOMER s where s.C_EMAIL=@email)
+	
+	return @cusexists
+end
+
+drop function dbo.doesCustomerExists
+drop procedure add_customer
+
+create procedure add_customer
+@id varchar(10),
+@name varchar(30),
+@phone bigint,
+@email varchar(50)
+as
+begin
+	if dbo.doesCustomerExists(@email) = 0 
+	begin
+		insert into CUSTOMER(C_ID, C_NAME, C_PHONE, C_EMAIL)
+		values (@id, @name, @phone, @email)
+	end
+
+	select C_ID from CUSTOMER c where c.C_EMAIL=@email
+end
+
+
+----------order time fix
+alter table [ORDER]
+drop column O_TIME
+
+alter table [ORDER]
+add O_TIME datetime default SYSDATETIME()
+-------------------
+
+---------order discount fix
+alter table [ORDER]
+alter column O_DISCOUNT float
+----------
+
+--------------customer phone number fix
+alter table [CUSTOMER]
+alter column C_PHONE bigint
+
+------------------create order
+create procedure create_order
+@oid varchar(10),
+@cid varchar(10),
+@method varchar(10),
+@discount float,
+@eid varchar(10),
+@status varchar(20)
+as 
+begin
+	
+	insert into [ORDER](O_ID, C_ID, O_METHOD, O_DISCOUNT, E_ID, O_STATUS)
+	values (@oid, @cid, @method, @discount, @eid, @status);
+end
+
+drop procedure create_order
+-------------------------subtract items in product details
+create procedure subtract_quantity
+@pid varchar(10),
+@quantity float
+as
+begin
+	update [PRODUCT DETAILS]
+	set P_QUANTITY=P_QUANTITY-@quantity where P_ID=@pid
+end
+
+drop procedure add_order_items
+-------------pro ord price fix
+alter table [PRO_ORD]
+alter column PO_PRICE float
+
+--------------add items in pro ord table
+create procedure add_order_items
+@pid varchar(10),
+@oid varchar(10),
+@quantity float,
+@price float
+as 
+begin
+	insert into [PRO_ORD](O_ID, P_ID, PO_QUANTITY, PO_PRICE)
+	values (@oid, @pid, @quantity, @price)
+end
+
+select * from [EMPLOYEE]
+select * from [PRO_ORD]
+
+delete from [ORDER]
+where O_ID='O1'
+
+declare @temp varchar(10)
+set @temp = dbo.order_id()
+exec create_order @oid=@temp, @cid='C000000001', @method='cash', @discount=0, @eid='E000000001', @status='paid'
+
+----------------CUSTOMER EMPLOYEE FIX
+alter table [ORDER]
+drop constraint ORDER_EMPLOYEE_FK
+
+alter table [ORDER]
+add constraint ORDER_EMPLOYEE_FK foreign key (E_ID) references EMPLOYEE(E_ID)
+
+---------making everything float
+alter table PRO_ORD
+alter column PO_QUANTITY float
+
+select * from [PRO_ORD]
+
+delete from [PRO_ORD]
+where O_ID='O1'
+
+delete from [ORDER]
+where O_ID='O1'
+
+select * from [ORDER]
+where O_ID='O1'
+
+select * from [PRODUCT DETAILS]
+where P_ID='P000000004'
+
+update [PRODUCT DETAILS]
+set P_QUANTITY=148.5 where P_ID='P000000004'
+
+update [PRODUCT DETAILS]
+set P_QUANTITY=(select top 1 PUR_QUANTITY from [PRO_PUR] pp where pp.P_ID=[PRODUCT DETAILS].P_ID)
+
+alter table [PRODUCT DETAILS]
+add constraint Quantity_Check check (P_QUANTITY >= 0)
+
+select * from [ORDER]
+
+select O_ID, O_DISCOUNT, O_TIME,
+(select C_NAME from [CUSTOMER] c where c.C_ID=o.C_ID) as C_NAME,
+(select SUM(PO_PRICE) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Price],
+(select COUNT(PO_QUANTITY) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Products],
+(select E_NAME from EMPLOYEE e where e.E_ID=o.E_ID) as [E_NAME]
+from [ORDER] o where 'John Smith' like 
+(select C_NAME from [CUSTOMER] c where c.C_ID=o.C_ID)
+
+--------------------------BPP
+select * from [PRO_ORD]
+
+select top 1 sum(PO_PRICE) as REVENUE,
+(select P_NAME from [PRODUCT] p where p.P_ID=po.P_ID) as [P_NAME],
+(select sum(
+(select sum(PO_PRICE) from [PRO_ORD] po where po.P_ID=p.P_ID)
+- p.P_PURCHASE) from [PRODUCT] p
+where p.P_ID=po.P_ID) as [P_PROFIT]
+from [PRO_ORD] po group by PO_PRICE, P_ID order by REVENUE desc
+
+
+-------------------
+
+--------------------------------

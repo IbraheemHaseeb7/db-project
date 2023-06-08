@@ -6,11 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -65,8 +63,10 @@ public class productRowController {
     @FXML
     protected void handleDelete() {
         try {
-            String q = "UPDATE PRODUCT set P_AVAILABILITY='deleted' WHERE P_ID='" + productId.getText() + "'";
+            String q = "UPDATE [PRODUCT DETAILS] set P_AVAILABILITY='deleted' WHERE P_ID='" + productId.getText() + "'";
             int res = HelloApplication.statement.executeUpdate(q);
+
+            System.out.println(res);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,6 +88,8 @@ public class productRowController {
         pec.presetValue.setText(presetValue);
         pec.heading.setText(productName.getText());
         pec.editStage = editStage;
+        pec.productsVbox = productsVbox;
+        pec.productId = productId.getText();
 
         editStage.setScene(new Scene(box));
         editStage.setResizable(false);
