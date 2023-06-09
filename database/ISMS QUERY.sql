@@ -781,9 +781,14 @@ create procedure add_order_items
 @price float
 as 
 begin
-	insert into [PRO_ORD](O_ID, P_ID, PO_QUANTITY, PO_PRICE)
-	values (@oid, @pid, @quantity, @price)
+	declare @temp float
+	set @temp = (select P_PURCHASE from PRODUCT p  where p.P_ID=@pid)
+
+	insert into [PRO_ORD](O_ID, P_ID, PO_QUANTITY, PO_PRICE, PO_PURCHASE)
+	values (@oid, @pid, @quantity, @price, @temp)
 end
+
+drop procedure add_order_items
 
 select * from [EMPLOYEE]
 select * from [PRO_ORD]
@@ -836,21 +841,35 @@ select O_ID, O_DISCOUNT, O_TIME,
 (select SUM(PO_PRICE) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Price],
 (select COUNT(PO_QUANTITY) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Products],
 (select E_NAME from EMPLOYEE e where e.E_ID=o.E_ID) as [E_NAME]
-from [ORDER] o where 'John Smith' like 
-(select C_NAME from [CUSTOMER] c where c.C_ID=o.C_ID)
+from [ORDER] o where MONTH(o.O_TIME) = 6 
 
 --------------------------BPP
-select * from [PRO_ORD]
+select PO_QUANTITY, CEILING((PO_PRICE / PO_QUANTITY)) as PO_PRICE,
+(select P_NAME from PRODUCT p where p.P_ID=po.P_ID) as P_NAME
+from [PRO_ORD] po
+where po.O_ID='O1'
 
-select top 1 sum(PO_PRICE) as REVENUE,
-(select P_NAME from [PRODUCT] p where p.P_ID=po.P_ID) as [P_NAME],
-(select sum(
-(select sum(PO_PRICE) from [PRO_ORD] po where po.P_ID=p.P_ID)
-- p.P_PURCHASE) from [PRODUCT] p
-where p.P_ID=po.P_ID) as [P_PROFIT]
-from [PRO_ORD] po group by PO_PRICE, P_ID order by REVENUE desc
+select sum(PO_QUANTITY) as PO_QUANTITY, 
+(select P_NAME from PRODUCT p where p.P_ID=po.P_ID) as P_NAME
+from [PRO_ORD] po group by PO_QUANTITY, (select P_NAME from PRODUCT p where p.P_ID=po.P_ID)
 
+SELECT top 1 sub.PO_PRICE, sub.PO_QUANTITY, sub.PO_PURCHASE, (sub.PO_PRICE - sub.PO_PURCHASE) as PROFIT,
+(select P_NAME from PRODUCT p where p.P_ID=sub.P_ID) as P_NAME
+FROM (
+    SELECT SUM(PO_QUANTITY) AS PO_QUANTITY, sum(PO_PRICE) as PO_PRICE,
+	sum(PO_PURCHASE * PO_QUANTITY) as PO_PURCHASE,  P_ID
+    FROM [PRO_ORD] po where MONTH(SYSDATETIME()) = 
+	(select MONTH(O_TIME) from [ORDER] o where o.O_ID=po.O_ID)
+    GROUP BY P_ID
+) as sub order by PO_PRICE desc
 
+select * from [ORDER]
+select * from PRODUCT
+
+update PRO_ORD
+set PO_PURCHASE = 50 where P_ID='P000000003'
+
+select * from EMPLOYEE
 -------------------
 
 --------------------------------

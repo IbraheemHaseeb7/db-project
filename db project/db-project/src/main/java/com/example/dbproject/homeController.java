@@ -31,6 +31,28 @@ public class homeController {
     @FXML
     public void initialize() throws IOException {
 
+        try {
+            String q = "SELECT top 1 sub.PO_PRICE, sub.PO_QUANTITY, sub.PO_PURCHASE, (sub.PO_PRICE - sub.PO_PURCHASE) as PROFIT,\n" +
+                    "(select P_NAME from PRODUCT p where p.P_ID=sub.P_ID) as P_NAME\n" +
+                    "FROM (\n" +
+                    "    SELECT SUM(PO_QUANTITY) AS PO_QUANTITY, sum(PO_PRICE) as PO_PRICE,\n" +
+                    "\tsum(PO_PURCHASE * PO_QUANTITY) as PO_PURCHASE,  P_ID\n" +
+                    "    FROM [PRO_ORD] po where MONTH(SYSDATETIME()) = \n" +
+                    "\t(select MONTH(O_TIME) from [ORDER] o where o.O_ID=po.O_ID)\n" +
+                    "    GROUP BY P_ID\n" +
+                    ") as sub order by PO_PRICE desc\n";
+            ResultSet res = HelloApplication.statement.executeQuery(q);
+
+            while (res.next()) {
+                bestPerformingProduct.setText(res.getString("P_NAME"));
+                totalRevenue.setText(res.getString("PO_PRICE"));
+                totalProfit.setText(res.getString("PROFIT"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         switch (HelloApplication.employee.employeeLevels) {
             case WORKER -> {
                 purchaseBill.setVisible(false);

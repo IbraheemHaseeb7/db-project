@@ -4,15 +4,19 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 public class ordersController {
     @FXML
     VBox productsVbox;
+    @FXML
+    DatePicker from, to;
     @FXML
     TextField quickSearch, customerName;
     @FXML
@@ -57,6 +61,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -88,6 +93,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -118,6 +124,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -150,6 +157,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -182,6 +190,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -214,6 +223,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -246,6 +256,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -278,6 +289,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -310,6 +322,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -342,6 +355,7 @@ public class ordersController {
                 orc.discount.setText(res.getString("O_DISCOUNT"));
                 orc.date.setText(res.getString("O_TIME"));
                 orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
 
                 productsVbox.getChildren().add(prow);
             }
@@ -351,7 +365,41 @@ public class ordersController {
     }
     @FXML
     public void handleGet() {
+        removeAllProducts();
+        try {
+            LocalDate fromDate = from.getValue();
+            LocalDate toDate = to.getValue();
 
+            String q = "select O_ID, O_DISCOUNT, O_TIME,\n" +
+                    "(select C_NAME from [CUSTOMER] c where c.C_ID=o.C_ID) as C_NAME,\n" +
+                    "(select SUM(PO_PRICE) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Price],\n" +
+                    "(select COUNT(PO_QUANTITY) from [PRO_ORD] po where po.O_ID=o.O_ID) as [Total Products],\n" +
+                    "(select E_NAME from EMPLOYEE e where e.E_ID=o.E_ID) as [E_NAME]\n" +
+                    "from [ORDER] o where \n" +
+                    "YEAR(O_TIME) >= "+ fromDate.getYear() +" and YEAR(O_TIME) <= "+toDate.getYear()+" and\n" +
+                    "MONTH(O_TIME) >= "+fromDate.getMonthValue()+" and MONTH(O_TIME) <= "+toDate.getMonthValue()+" and\n" +
+                    "DAY(O_TIME) >= "+fromDate.getDayOfMonth()+" and DAY(O_TIME) <= " + toDate.getDayOfMonth();
+            ResultSet res = HelloApplication.statement.executeQuery(q);
+
+            while (res.next()) {
+                FXMLLoader row = new FXMLLoader(HelloApplication.class.getResource("orderRow.fxml"));
+                Parent prow = row.load();
+
+                orderRowController orc = row.getController();
+                orc.oid.setText(res.getString("O_ID"));
+                orc.cname.setText(res.getString("C_NAME"));
+                orc.totalPrice.setText(res.getString("Total Price"));
+                orc.totalProducts.setText(res.getString("Total Products"));
+                orc.discount.setText(res.getString("O_DISCOUNT"));
+                orc.date.setText(res.getString("O_TIME"));
+                orc.employee.setText(res.getString("E_NAME"));
+                orc.moreDetails.setId(res.getString("O_ID"));
+
+                productsVbox.getChildren().add(prow);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void removeAllProducts() {
         productsVbox.getChildren().clear();

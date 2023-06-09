@@ -49,7 +49,6 @@ public class productEditController {
                     "commit";
 
             int row = HelloApplication.statement.executeUpdate(test);
-            System.out.println(row);
 
             if (row == 1) {
                 clearAllProducts();

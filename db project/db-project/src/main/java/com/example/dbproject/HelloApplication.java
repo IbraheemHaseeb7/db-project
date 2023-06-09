@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -69,7 +70,7 @@ public class HelloApplication extends Application {
     {
         try {
             DriverManager.registerDriver(new SQLServerDriver());
-            con = DriverManager.getConnection("jdbc:sqlserver://DESKTOP-T93TQ81;trustServerCertificate=true;IntegratedSecurity=true;encrypt=true;Database=ISMS");
+            con = DriverManager.getConnection("jdbc:sqlserver://"+ InetAddress.getLocalHost().getHostName() +";trustServerCertificate=true;IntegratedSecurity=true;encrypt=true;Database=ISMS");
             statement = con.createStatement();
 
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class HelloApplication extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch();
     }
 }
